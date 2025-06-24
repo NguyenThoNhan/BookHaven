@@ -92,11 +92,11 @@ Ngoài ra, dự án còn tập trung vào việc xây dựng trải nghiệm ng�
 
 | Trang Chủ & Slider Sách Phổ Biến | Trang Chi Tiết Sách & Nút Tương Tác |
 | :------------------------------: | :----------------------------------: |
-| **[Chèn ảnh Trang Chủ]**         | **[Chèn ảnh Trang Chi Tiết Sách]**   |
+| **![UI](images/a1.png)**         | **![UI](images/a4.png)**    |
 | **Thư Viện Ảo 3D**               | **Dashboard Quản Trị của Admin**   |
-| **[Chèn ảnh Thư Viện Ảo]**        | **[Chèn ảnh Dashboard Admin]**        |
-| **Quản lý Lịch sử Mượn/Trả**        | **Trang Profile với Huy hiệu**     |
-| **[Chèn ảnh Quản lý Lịch sử]**  | **[Chèn ảnh Trang Profile]**         |
+| **![UI](images/a2.png)**         | **![UI](images/a5.png)**        |
+| **Quản lý Lịch sử Mượn/Trả**     | **Trang Profile với Huy hiệu**     |
+| **![UI](images/a3.png)**         | **![UI](images/a6.png)**         |
 
 ---
 
