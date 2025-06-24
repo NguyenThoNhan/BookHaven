@@ -68,7 +68,7 @@ Ngoài ra, dự án còn tập trung vào việc xây dựng trải nghiệm ng�
 
 ## 🏗️ Sơ Đồ Cấu Trúc (Class Diagram)
 
-**[images/sodocautruc.drawio.png]**
+**![Flow Activity Flow](images/sodocautruc.drawio.png)**
 
 *Sơ đồ minh họa các đối tượng chính (`User`, `Book`, `Loan`, `Event`, `Category`, `Badge`) và các mối quan hệ giữa chúng (One-to-Many, Many-to-Many).*
 
@@ -76,13 +76,13 @@ Ngoài ra, dự án còn tập trung vào việc xây dựng trải nghiệm ng�
 
 #### Sơ đồ 1: Quy trình Xác thực Tính toàn vẹn của Tài liệu Online
 
-**[images/thuattoan1.drawio.png]**
+**![Flow Activity Flow](images/thuattoan1.drawio.png)**
 
 *Sơ đồ mô tả các bước từ khi người dùng mượn tài liệu, hệ thống ký bằng Private Key, người dùng sửa đổi nội dung, cho đến khi trả lại và hệ thống xác thực bằng Public Key.*
 
 #### Sơ đồ 2: Quy trình Tự động Trao huy hiệu cho Người dùng
 
-**[images/thuattoan2.drawio.png]**
+**![Flow Activity Flow](images/thuattoan2.drawio.png)**
 
 *Sơ đồ mô tả luồng hoạt động của hệ thống Event-Listener: Sự kiện `BookReturned` được phát ra, `GamificationSubscriber` lắng nghe, thực hiện truy vấn để đếm số sách đã mượn và kiểm tra điều kiện để trao huy hiệu "Độc Giả Chăm Chỉ".*
 
