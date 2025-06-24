@@ -68,25 +68,21 @@ Ngoài ra, dự án còn tập trung vào việc xây dựng trải nghiệm ng�
 
 ## 🏗️ Sơ Đồ Cấu Trúc (Class Diagram)
 
-*(...Khu vực này sẽ được cập nhật sau khi bạn hoàn thành việc vẽ sơ đồ...)*
-
-**[Để trống hoặc chèn ảnh sơ đồ lớp của bạn vào đây]**
+**[images/sodocautruc.drawio.png]**
 
 *Sơ đồ minh họa các đối tượng chính (`User`, `Book`, `Loan`, `Event`, `Category`, `Badge`) và các mối quan hệ giữa chúng (One-to-Many, Many-to-Many).*
 
 ## ⚙️ Sơ Đồ Thuật Toán (Activity Diagram)
 
-*(...Khu vực này sẽ được cập nhật sau khi bạn hoàn thành việc vẽ sơ đồ...)*
-
 #### Sơ đồ 1: Quy trình Xác thực Tính toàn vẹn của Tài liệu Online
 
-**[Để trống hoặc chèn ảnh sơ đồ thuật toán 1 của bạn vào đây]**
+**[images/thuattoan1.drawio.png]**
 
 *Sơ đồ mô tả các bước từ khi người dùng mượn tài liệu, hệ thống ký bằng Private Key, người dùng sửa đổi nội dung, cho đến khi trả lại và hệ thống xác thực bằng Public Key.*
 
 #### Sơ đồ 2: Quy trình Tự động Trao huy hiệu cho Người dùng
 
-**[Để trống hoặc chèn ảnh sơ đồ thuật toán 2 của bạn vào đây]**
+**[images/thuattoan2.drawio.png]**
 
 *Sơ đồ mô tả luồng hoạt động của hệ thống Event-Listener: Sự kiện `BookReturned` được phát ra, `GamificationSubscriber` lắng nghe, thực hiện truy vấn để đếm số sách đã mượn và kiểm tra điều kiện để trao huy hiệu "Độc Giả Chăm Chỉ".*
 
@@ -149,4 +145,4 @@ if ($isVerified === 1) {
 }
 ```
 ### 🔗 Liên Kết
-Link Repository: [Dán link GitHub repo của bạn vào đây]
+Link Repository: [https://github.com/NguyenThoNhan/BookHaven]
