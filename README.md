@@ -37,6 +37,7 @@ Ngoài ra, dự án còn tập trung vào việc xây dựng trải nghiệm ng�
 -   ✍️ **Chữ Ký Số Bất Đối Xứng:** Tự động ký lên tài liệu online bằng **Private Key** khi người dùng mượn và xác thực bằng **Public Key** khi trả, đảm bảo tính toàn vẹn tuyệt đối.
 -   👥 **Quản lý Người dùng & Lượt mượn:** Admin có thể theo dõi và quản lý toàn bộ người dùng và các hoạt động mượn/trả trong hệ thống.
 -   🎉 **Quản lý Sự kiện:** Admin có thể tạo và quản lý các sự kiện của thư viện.
+-   💻 **Quản lý mail liên hệ, hỏi đáp:** Admin thông qua mailtrap.io trả lời tư vấn cho khách hàng.
 
 ### 3. Trải Nghiệm Người Dùng Tương Tác:
 -   🚀 **Mượn/Trả tài liệu:** Người dùng mượn/trả tài liệu on/off với chữ ký số.
@@ -44,6 +45,7 @@ Ngoài ra, dự án còn tập trung vào việc xây dựng trải nghiệm ng�
 -   🏆 **Gamification:** Hệ thống điểm thưởng và huy hiệu khi người dùng hoàn thành các hoạt động như trả sách.
 -   📅 **Đăng ký Sự kiện:** Xem và đăng ký tham gia các sự kiện do thư viện tổ chức.
 -   🏛️ **Thư viện ảo 3D:** Một không gian 3D tương tác, cho phép người dùng "dạo bước" và khám phá các kệ sách như trong một thư viện thực thụ.
+-   💻 **Liên hệ và hỏi đáp:** Người dùng liên hệ với quản trị viên thông qua mailtrap.io
 
 ### 4. Bảo Mật Toàn Diện (Security)
 -   🔑 **Định danh & Xác thực (`Authentication`):** Tích hợp `Laravel Breeze` cung cấp một hệ thống đăng ký, đăng nhập, và quản lý phiên (session) an toàn, tuân thủ các chuẩn bảo mật hiện đại.
