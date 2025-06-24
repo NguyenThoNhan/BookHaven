@@ -148,3 +148,4 @@ if ($isVerified === 1) {
 ```
 ### 🔗 Liên Kết
 Link Repository: [https://github.com/NguyenThoNhan/BookHaven]
+Link Deploy: [https://bookhaven-app.onrender.com]
