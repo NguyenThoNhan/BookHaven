@@ -11,9 +11,9 @@
 
 Một dự án ứng dụng web được xây dựng trên nền tảng Laravel 10, mô phỏng một hệ thống quản lý thư viện số hiện đại với các tính năng nâng cao như phân quyền, chữ ký số bất đối xứng, và trải nghiệm người dùng tương tác.
 
-| **Họ và tên sinh viên:** | **[NGUYỄN THỌ NHÂN]** |
+| **Họ và tên sinh viên:** | **NGUYỄN THỌ NHÂN** |
 | :---------------------- | :--------------------------------- |
-| **Mã Sinh viên:**       | **[23010786]**    |
+| **Mã Sinh viên:**       | **23010786**    |
 
 ---
 
@@ -93,8 +93,19 @@ Ngoài ra, dự án còn tập trung vào việc xây dựng trải nghiệm ng�
 ### 1. Model `User` và các mối quan hệ phức tạp
 *File: `app/Models/User.php`*
 ```php
-// [Dán một đoạn code tiêu biểu từ Model User.php của bạn vào đây]
-// Ví dụ:
+<?php
+...
+public function loans()
+{
+    return $this->hasMany(Loan::class);
+}
+
+public function badges()
+{
+    return $this->belongsToMany(Badge::class, 'badge_user') // Chỉ định rõ tên bảng trung gian
+                 ->withTimestamps('unlocked_at', 'unlocked_at');
+}
+
 public function favoriteBooks()
 {
     return $this->belongsToMany(Book::class, 'favorites');
@@ -104,9 +115,22 @@ public function registeredEvents()
 {
     return $this->belongsToMany(Event::class, 'event_registrations');
 }
-
+```
 ### 2. Logic Ký và Xác thực Chữ Ký Số
 *File: app/Http/Controllers/LoanController.php*
+```php
+// Ví dụ: Đoạn code ký bằng Private Key trong hàm store()
+// hoặc đoạn code xác thực bằng Public Key trong hàm update()
 
-🔗 Liên Kết
+// Ký tài liệu
+openssl_sign($originalContent, $signature, $privateKey, OPENSSL_ALGO_SHA256);
+$digitalSignature = base64_encode($signature);
+
+// Xác thực tài liệu
+$isVerified = openssl_verify($currentContent, $originalSignature, $publicKey, OPENSSL_ALGO_SHA256);
+if ($isVerified === 1) {
+    // ... Nội dung vẹn toàn
+}
+```
+### 🔗 Liên Kết
 Link Repository: [Dán link GitHub repo của bạn vào đây]
