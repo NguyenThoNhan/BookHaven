@@ -1,35 +1,43 @@
 services:
-  # Dịch vụ 1: Ứng dụng Web Laravel
+  # Dịch vụ Web Laravel
   - type: web
-    name: bookhaven-app # Tên ứng dụng của bạn
+    name: bookhaven-app
     env: php
+    # Lệnh để cài đặt và build ứng dụng
     buildCommand: |
       composer install --no-dev --optimize-autoloader
-      php artisan optimize:clear
       php artisan config:cache
       php artisan route:cache
       php artisan view:cache
-    startCommand: "php-fpm -D; nginx -g 'daemon off;'" # Lệnh chạy Nginx + PHP-FPM
+      php artisan storage:link
+    # Lệnh để khởi động server
+    startCommand: "php-fpm -D; nginx -g 'daemon off;'"
+    # Khai báo các biến môi trường
     envVars:
       - key: APP_URL
         value: https://${RENDER_EXTERNAL_URL}
-      - key: APP_KEY # Sẽ được điền ở bước sau
-        generateValue: true # Render có thể tự tạo key, nhưng nên dùng key của bạn
+      - key: APP_KEY
+        sync: false # Để chúng ta điền thủ công
       - key: APP_ENV
         value: production
       - key: APP_DEBUG
         value: false
       - key: LOG_CHANNEL
         value: stderr
+      
+      # --- Các biến kết nối tới Aiven ---
+      # Chúng ta sẽ điền các giá trị này trên giao diện của Render
       - key: DB_CONNECTION
         value: mysql
-      - fromGroup: bookhaven-database # Tên của nhóm biến môi trường từ CSDL
-
-  # Dịch vụ 2: Cơ sở dữ liệu MySQL
-  - type: pserv
-    name: bookhaven-mysql # Tên CSDL của bạn
-    env: mysql
-    plan: free # Sử dụng gói miễn phí
-    envVarGroups:
-      - name: bookhaven-database
-        # Render sẽ tự động tạo các biến MYSQL_... và gán vào nhóm này
+      - key: DB_HOST
+        sync: false
+      - key: DB_PORT
+        sync: false
+      - key: DB_DATABASE
+        sync: false
+      - key: DB_USERNAME
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+      - key: DB_SSL_CA
+        value: ca.pem # Chỉ cần tên file
