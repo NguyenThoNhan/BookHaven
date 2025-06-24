@@ -7,60 +7,106 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+# 📖 Project BookHaven: Hệ Thống Quản Lý Thư Viện Tích Hợp Chữ Ký Số
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+Một dự án ứng dụng web được xây dựng trên nền tảng Laravel 10, mô phỏng một hệ thống quản lý thư viện số hiện đại với các tính năng nâng cao như phân quyền, chữ ký số bất đối xứng, và trải nghiệm người dùng tương tác.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+| **Họ và tên sinh viên:** | **[NGUYỄN THỌ NHÂN]** |
+| :---------------------- | :--------------------------------- |
+| **Mã Sinh viên:**       | **[23010786]**    |
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+---
 
-## Learning Laravel
+## 🚀 Giới Thiệu Dự Án
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+**BookHaven** không chỉ là một trang web quản lý mượn/trả sách thông thường. Dự án này được phát triển nhằm giải quyết các bài toán thực tế trong quản lý tài nguyên số, đặc biệt là vấn đề **đảm bảo tính toàn vẹn của tài liệu điện tử**. Bằng việc áp dụng thuật toán chữ ký số sử dụng cặp khóa Public/Private (RSA-SHA256), hệ thống có khả năng xác thực liệu nội dung một tài liệu có bị thay đổi hay không trong suốt quá trình được mượn.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+Ngoài ra, dự án còn tập trung vào việc xây dựng trải nghiệm người dùng phong phú thông qua các tính năng Gamification, quản lý sự kiện, và một chế độ "Thư viện ảo" 3D độc đáo.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains over 2000 video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## ✨ Các Tính Năng Nổi Bật
 
-## Laravel Sponsors
+### Chức năng chính:
+-   👤 **Hệ thống Xác thực & Phân quyền:** Phân chia rõ ràng vai trò `Admin` và `User` với các quyền hạn riêng biệt.
+-   📚 **Quản lý Sách (CRUD):** Admin có toàn quyền Thêm, Sửa, Xóa các đầu sách và tài liệu điện tử.
+-   💻 **Quản lý Tài liệu Online:** Cho phép Admin upload file `.txt` làm nội dung cho tài liệu điện tử.
+-   ✍️ **Chữ Ký Số Bất Đối Xứng:** Tự động ký lên tài liệu online bằng **Private Key** khi người dùng mượn và xác thực bằng **Public Key** khi trả, đảm bảo tính toàn vẹn tuyệt đối.
+-   👥 **Quản lý Người dùng & Lượt mượn:** Admin có thể theo dõi và quản lý toàn bộ người dùng và các hoạt động mượn/trả trong hệ thống.
+-   🎉 **Quản lý Sự kiện:** Admin có thể tạo và quản lý các sự kiện của thư viện.
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell).
+### Chức năng tương tác của Người dùng:
+-   🚀 **Mượn/Trả tài liệu:** Người dùng mượn/trả tài liệu on/off với chữ ký số.
+-   ❤️ **Tủ sách Yêu thích:** Lưu lại những cuốn sách quan tâm để xem sau.
+-   🏆 **Gamification:** Hệ thống điểm thưởng và huy hiệu khi người dùng hoàn thành các hoạt động như trả sách.
+-   📅 **Đăng ký Sự kiện:** Xem và đăng ký tham gia các sự kiện do thư viện tổ chức.
+-   🏛️ **Thư viện ảo 3D:** Một không gian 3D tương tác, cho phép người dùng "dạo bước" và khám phá các kệ sách như trong một thư viện thực thụ.
 
-### Premium Partners
+## 🛠️ Công Nghệ Sử Dụng
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Cubet Techno Labs](https://cubettech.com)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[Many](https://www.many.co.uk)**
-- **[Webdock, Fast VPS Hosting](https://www.webdock.io/en)**
-- **[DevSquad](https://devsquad.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[OP.GG](https://op.gg)**
-- **[WebReinvent](https://webreinvent.com/?utm_source=laravel&utm_medium=github&utm_campaign=patreon-sponsors)**
-- **[Lendio](https://lendio.com)**
+-   **Backend:** Laravel 10, PHP 8.1+
+-   **Frontend:** Blade, JavaScript (ES6+), CSS 3D Transforms
+-   **Database:** MySQL (Kết nối và Migrate tới Aiven Cloud)
+-   **Authentication:** Laravel Breeze
+-   **Core Technologies:** Eloquent ORM, Artisan Commands, Middlewares, Policies, Events & Listeners.
 
-## Contributing
+---
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+## 🏗️ Sơ Đồ Cấu Trúc (Class Diagram)
 
-## Code of Conduct
+*(...Khu vực này sẽ được cập nhật sau khi bạn hoàn thành việc vẽ sơ đồ...)*
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+**[Để trống hoặc chèn ảnh sơ đồ lớp của bạn vào đây]**
 
-## Security Vulnerabilities
+*Sơ đồ minh họa các đối tượng chính (`User`, `Book`, `Loan`, `Event`, `Category`, `Badge`) và các mối quan hệ giữa chúng (One-to-Many, Many-to-Many).*
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+## ⚙️ Sơ Đồ Thuật Toán (Activity Diagram)
 
-## License
+*(...Khu vực này sẽ được cập nhật sau khi bạn hoàn thành việc vẽ sơ đồ...)*
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+#### Sơ đồ 1: Quy trình Xác thực Tính toàn vẹn của Tài liệu Online
+
+**[Để trống hoặc chèn ảnh sơ đồ thuật toán 1 của bạn vào đây]**
+
+*Sơ đồ mô tả các bước từ khi người dùng mượn tài liệu, hệ thống ký bằng Private Key, người dùng sửa đổi nội dung, cho đến khi trả lại và hệ thống xác thực bằng Public Key.*
+
+#### Sơ đồ 2: Quy trình Tự động Trao huy hiệu cho Người dùng
+
+**[Để trống hoặc chèn ảnh sơ đồ thuật toán 2 của bạn vào đây]**
+
+*Sơ đồ mô tả luồng hoạt động của hệ thống Event-Listener: Sự kiện `BookReturned` được phát ra, `GamificationSubscriber` lắng nghe, thực hiện truy vấn để đếm số sách đã mượn và kiểm tra điều kiện để trao huy hiệu "Độc Giả Chăm Chỉ".*
+
+---
+
+## 📸 Ảnh Chụp Màn Hình Chức Năng Chính
+
+| Trang Chủ & Slider Sách Phổ Biến | Trang Chi Tiết Sách & Nút Tương Tác |
+| :------------------------------: | :----------------------------------: |
+| **[Chèn ảnh Trang Chủ]**         | **[Chèn ảnh Trang Chi Tiết Sách]**   |
+| **Thư Viện Ảo 3D**               | **Dashboard Quản Trị của Admin**   |
+| **[Chèn ảnh Thư Viện Ảo]**        | **[Chèn ảnh Dashboard Admin]**        |
+| **Quản lý Lịch sử Mượn/Trả**        | **Trang Profile với Huy hiệu**     |
+| **[Chèn ảnh Quản lý Lịch sử]**  | **[Chèn ảnh Trang Profile]**         |
+
+---
+
+## 💻 Code Minh Họa Phần Chính
+
+### 1. Model `User` và các mối quan hệ phức tạp
+*File: `app/Models/User.php`*
+```php
+// [Dán một đoạn code tiêu biểu từ Model User.php của bạn vào đây]
+// Ví dụ:
+public function favoriteBooks()
+{
+    return $this->belongsToMany(Book::class, 'favorites');
+}
+
+public function registeredEvents()
+{
+    return $this->belongsToMany(Event::class, 'event_registrations');
+}
+
+### 2. Logic Ký và Xác thực Chữ Ký Số
+*File: app/Http/Controllers/LoanController.php*
+
+🔗 Liên Kết
+Link Repository: [Dán link GitHub repo của bạn vào đây]
