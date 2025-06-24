@@ -1,0 +1,35 @@
+services:
+  # Dịch vụ 1: Ứng dụng Web Laravel
+  - type: web
+    name: bookhaven-app # Tên ứng dụng của bạn
+    env: php
+    buildCommand: |
+      composer install --no-dev --optimize-autoloader
+      php artisan optimize:clear
+      php artisan config:cache
+      php artisan route:cache
+      php artisan view:cache
+    startCommand: "php-fpm -D; nginx -g 'daemon off;'" # Lệnh chạy Nginx + PHP-FPM
+    envVars:
+      - key: APP_URL
+        value: https://${RENDER_EXTERNAL_URL}
+      - key: APP_KEY # Sẽ được điền ở bước sau
+        generateValue: true # Render có thể tự tạo key, nhưng nên dùng key của bạn
+      - key: APP_ENV
+        value: production
+      - key: APP_DEBUG
+        value: false
+      - key: LOG_CHANNEL
+        value: stderr
+      - key: DB_CONNECTION
+        value: mysql
+      - fromGroup: bookhaven-database # Tên của nhóm biến môi trường từ CSDL
+
+  # Dịch vụ 2: Cơ sở dữ liệu MySQL
+  - type: pserv
+    name: bookhaven-mysql # Tên CSDL của bạn
+    env: mysql
+    plan: free # Sử dụng gói miễn phí
+    envVarGroups:
+      - name: bookhaven-database
+        # Render sẽ tự động tạo các biến MYSQL_... và gán vào nhóm này
