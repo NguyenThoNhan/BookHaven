@@ -141,11 +141,137 @@ openssl_sign($originalContent, $signature, $privateKey, OPENSSL_ALGO_SHA256);
 $digitalSignature = base64_encode($signature);
 
 // Xác thực tài liệu
-$isVerified = openssl_verify($currentContent, $originalSignature, $publicKey, OPENSSL_ALGO_SHA256);
-if ($isVerified === 1) {
-    // ... Nội dung vẹn toàn
-}
+elseif ($book->type === 'online') {
+            if ($loan->digital_signature) {
+                try {
+                    // a. Lấy nội dung hiện tại (có thể đã bị sửa)
+                    $currentContent = $book->content;
+
+                    // b. Giải mã chữ ký gốc
+                    $originalSignature = base64_decode($loan->digital_signature);
+
+                    // c. Đọc Public Key
+                    $publicKeyPath = storage_path('app/keys/public.key');
+                    if (!File::exists($publicKeyPath)) {
+                        Log::error('Digital Signature Error: Public key not found for verification. Loan ID: ' . $loan->id);
+                        return back()->with('error', 'Lỗi hệ thống: Không thể xác thực chữ ký số.');
+                    }
+                    $publicKey = File::get($publicKeyPath);
+
+                    // d. Xác thực bằng Public Key
+                    $isVerified = openssl_verify($currentContent, $originalSignature, $publicKey, OPENSSL_ALGO_SHA256);
+```
+### 3. Giao diện CRUD cho books
+*Folder: resources/views/admin/books
+```php
+// *file creat.blade.php
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Thêm Sách Mới') }}
+        </h2>
+    </x-slot>
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                    <form method="POST" action="{{ route('admin.books.store') }}" enctype="multipart/form-data">
+                        @csrf
+                        @include('admin.books._form')
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>
+
+// *file edit.blade.php
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Chỉnh Sửa Sách') }}
+        </h2>
+    </x-slot>
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                    <form method="POST" action="{{ route('admin.books.update', $book) }}" enctype="multipart/form-data">
+                        @csrf
+                        @method('PUT')
+                        @include('admin.books._form', ['book' => $book])
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>
+
+// *file index.blade.php
+<x-app-layout>
+    <x-slot name="header">
+        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            {{ __('Quản Lý Sách') }}
+        </h2>
+    </x-slot>
+
+    <div class="py-12">
+        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+                <div class="p-6 text-gray-900">
+                    <div class="flex justify-between mb-4">
+                        <h3 class="text-lg font-bold">Danh sách Sách/Tài liệu</h3>
+                        <a href="{{ route('admin.books.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                            Thêm Mới
+                        </a>
+                    </div>
+
+                    @if (session('success'))
+                        <div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative mb-4" role="alert">
+                            <span class="block sm:inline">{{ session('success') }}</span>
+                        </div>
+                    @endif
+
+                    <table class="min-w-full divide-y divide-gray-200">
+                        <thead class="bg-gray-50">
+                        <tr>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tiêu đề</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tác giả</th>
+                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Loại</th>
+                            <th class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Hành động</th>
+                        </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-gray-200">
+                        @foreach ($books as $book)
+                            <tr>
+                                <td class="px-6 py-4 whitespace-nowrap">{{ $book->title }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap">{{ $book->author }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap">{{ $book->type == 'physical' ? 'Sách vật lý' : 'Tài liệu online' }}</td>
+                                <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
+                                    <a href="{{ route('admin.books.edit', $book) }}" class="text-indigo-600 hover:text-indigo-900">Sửa</a>
+                                    <form action="{{ route('admin.books.destroy', $book) }}" method="POST" class="inline-block ml-4" onsubmit="return confirm('Bạn có chắc chắn muốn xóa?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="text-red-600 hover:text-red-900">Xóa</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+
+                    <div class="mt-4">
+                        {{ $books->links() }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</x-app-layout>
 ```
 ### 🔗 Liên Kết
-Link Repository: [https://github.com/NguyenThoNhan/BookHaven]
-Link Deploy: [https://bookhaven-app.onrender.com]
+- Link Repository: [https://github.com/NguyenThoNhan/BookHaven]
+- Link Deploy: [https://bookhaven-app.onrender.com]
+- Link Readme.io: [https://nguyenthonhan.github.io/webnc_readme/]
